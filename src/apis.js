@@ -7,8 +7,8 @@ const isProduction = true
 
 let baseUrl = 'http://localost:5000'
 
-if (isProduction){
-    baseUrl =  'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000'
+if (isProduction) {
+    baseUrl = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000'
 }
 
 
@@ -27,4 +27,4 @@ const getApiStockIn = async () => {
     return body;
 }
 
-export {getApiCustomers, getApiStockIn}
+export { getApiCustomers, getApiStockIn }

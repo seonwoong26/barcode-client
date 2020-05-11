@@ -14,13 +14,13 @@ function App() {
 
   return (
     <Router>
-        <div>
-          <nav>
+      <div>
+        <nav>
           <div className="Button-header">
             <span className="link">
               <Link to="/home"><Button variant="contained" color="primary">Home</Button></Link>
             </span>
-            
+
             <span className="link">
               <Link to="/stock"><Button variant="contained" color="primary">재고현황</Button></Link>
             </span>
@@ -41,23 +41,23 @@ function App() {
               <Link to="/Add"><Button variant="contained" color="primary">추가</Button></Link>
             </span> */}
 
-            </div>
-              {/* <li>
+          </div>
+          {/* <li>
                 <Link to="/user">User</Link>
               </li> */}
-              
-          </nav>
-          
-          <Route exact path='/home' component={Home}/>
-          <Route path='/stock' component={Stock}/>
-          <Route path='/stock_in' component={Stock_in}/>
-          <Route path='/stock_out' component={Stock_out}/>
-          <Route path='/client' component={Client}/>
-          {/* <Route path='/Add' component={Add}/> */}
-       </div>
-      </Router>
 
-      
+        </nav>
+
+        <Route exact path='/home' component={Home} />
+        <Route path='/stock' component={Stock} />
+        <Route path='/stock_in' component={Stock_in} />
+        <Route path='/stock_out' component={Stock_out} />
+        <Route path='/client' component={Client} />
+        {/* <Route path='/Add' component={Add}/> */}
+      </div>
+    </Router>
+
+
   );
 }
 

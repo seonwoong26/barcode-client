@@ -1,4 +1,4 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
 import './Stock.css';
 import Customer from '../Customer/Customer';
 import CustomerAdd from '../Customer/CustomerAdd';
@@ -19,9 +19,9 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
-import {getApiCustomers} from '../../apis'
+import { getApiCustomers } from '../../apis'
 
-  
+
 
 const styles = theme => ({
   root: {
@@ -36,14 +36,14 @@ const styles = theme => ({
     justifyContent: 'center'
   },
   paper: {
-    marginLeft:18,
+    marginLeft: 18,
     marginRight: 18
   },
   progress: {
-   margin: theme.spacing(2) 
+    margin: theme.spacing(2)
   },
   grow: {
-    flexGrow:1,
+    flexGrow: 1,
   },
   tableHead: {
     fontSize: '1.0rem'
@@ -52,7 +52,7 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
- 
+
   title: {
     flexGrow: 1,
     display: 'none',
@@ -105,20 +105,20 @@ const styles = theme => ({
 class Stock extends Component {
 
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-    customers: "",
-    completed: 0,
-    searchKeyword: ''
+      customers: "",
+      completed: 0,
+      searchKeyword: ''
+    }
   }
-}
 
-handleClickOpen = () => {
-  this.setState({
+  handleClickOpen = () => {
+    this.setState({
       open: true
-  });
-}
+    });
+  }
 
   stateRefresh = () => {
     this.setState({
@@ -128,21 +128,21 @@ handleClickOpen = () => {
     });
 
     this.callApi()
-    .then(res => this.setState({customers: res}))
-    .catch(err => console.log(err));
+      .then(res => this.setState({ customers: res }))
+      .catch(err => console.log(err));
   }
 
   componentDidMount() {
     console.log('Component did mount')
-    this.timer = setInterval(this.progress, 20 );
+    this.timer = setInterval(this.progress, 20);
     this.callApi()
-    .then(res => this.setState({customers: res}))
-    .catch(err => console.log(err));
+      .then(res => this.setState({ customers: res }))
+      .catch(err => console.log(err));
   }
 
   callApi = async () => {
     const data = await getApiCustomers();
-    
+
     return data
     // console.log('call api')
     // const response = await fetch('http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/customers');
@@ -153,7 +153,7 @@ handleClickOpen = () => {
 
   progress = () => {
     const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 1});
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
 
   }
 
@@ -164,86 +164,86 @@ handleClickOpen = () => {
   }
 
   render() {
-    
+
     const filteredComponents = (data) => {
       data = data.filter((c) => {
         return c.name.indexOf(this.state.searchKeyword) > -1;
       });
       return data.map((c) => {
         return <Customer
-        stateRefresh={this.stateRefresh}
-        key={c.id}
-        id={c.id}
-        image={c.image}
-        code={c.code}
-        name={c.name}
-        price={c.price}
-        qty={c.qty}
+          stateRefresh={this.stateRefresh}
+          key={c.id}
+          id={c.id}
+          image={c.image}
+          code={c.code}
+          name={c.name}
+          price={c.price}
+          qty={c.qty}
         />
       });
     }
 
 
     const { classes } = this.props;
-    const cellList = ["번호", "상품이미지", "품번", "품명", "단가", "수량", "설정"];
+    const cellList = ["번호", "상품이미지", "품번", "품명", "가격", "수량", "설정"];
     return (
       <div className={classes.root}>
-       <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            재고현황
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="open drawer"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography className={classes.title} variant="h6" noWrap>
+              재고현황
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="검색하기"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+                name="searchKeyword"
+                value={this.state.searchKeyword}
+                onChange={this.handleValueChange}
+              />
             </div>
-            <InputBase
-              placeholder="검색하기"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-              name="searchKeyword"
-              value={this.state.searchKeyword}
-              onChange={this.handleValueChange}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
-      <div className={classes.menu}>
-      <CustomerAdd stateRefresh={this.stateRefresh}/>
-      </div>
+          </Toolbar>
+        </AppBar>
+        <div className={classes.menu}>
+          <CustomerAdd stateRefresh={this.stateRefresh} />
+        </div>
         <Paper className={classes.paper}>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              {cellList.map((c, idx) => {
-                return <TableCell className={classes.tableHead} key={idx}>{c}</TableCell>
-              })}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.state.customers ? filteredComponents(this.state.customers) : 
-              
-            <TableRow>
-            <TableCell colSpan="6" align="center">
-              <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
-            </TableCell>
-          </TableRow>
-            }
-          </TableBody>
-        </Table>
-       </Paper>
-       </div>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                {cellList.map((c, idx) => {
+                  return <TableCell className={classes.tableHead} key={idx}>{c}</TableCell>
+                })}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.state.customers ? filteredComponents(this.state.customers) :
+
+                <TableRow>
+                  <TableCell colSpan="6" align="center">
+                    <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed} />
+                  </TableCell>
+                </TableRow>
+              }
+            </TableBody>
+          </Table>
+        </Paper>
+      </div>
     );
   }
 

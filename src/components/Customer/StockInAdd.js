@@ -1,5 +1,5 @@
 import React from 'react';
-import {post} from 'axios';
+import { post } from 'axios';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -18,11 +18,11 @@ class StockInAdd extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state= {
+        this.state = {
             code: '',
             name: '',
             qty: '',
-            fileName:'',
+            date_in: '',
             open: false
 
         }
@@ -36,28 +36,28 @@ class StockInAdd extends React.Component {
                 this.props.stateRefresh();
             })
         this.setState({
-                code: '',
-                name: '',
-                qty: '',
-                fileName:'',
-                open: false
-            })
-        
-    }
-
-
-    handleFileChange = (e) =>{
-        this.setState({
-            file: e.target.files[0],
-            fileName: e.target.value
+            code: '',
+            name: '',
+            qty: '',
+            date_in: '',
+            open: false
         })
+
     }
 
-    handleValueChange = (e) =>{
-        let nextState = {};
-        nextState[e.target.name] = e.target.value;
-        this.setState(nextState);
-    }
+
+    // handleFileChange = (e) =>{
+    //     this.setState({
+    //         file: e.target.files[0],
+    //         fileName: e.target.value
+    //     })
+    // }
+
+    // handleValueChange = (e) =>{
+    //     let nextState = {};
+    //     nextState[e.target.name] = e.target.value;
+    //     this.setState(nextState);
+    // }
 
     addStockIn = () => {
         // const url = 'http://localhost:5000/api/customers';
@@ -66,7 +66,7 @@ class StockInAdd extends React.Component {
         formData.append('code', this.state.code);
         formData.append('name', this.state.name);
         formData.append('qty', this.state.qty);
-        formData.append('date_in', this.state.date_in); 
+        formData.append('date_in', this.state.date_in);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -82,20 +82,20 @@ class StockInAdd extends React.Component {
         });
     }
 
-    handleClose= () => {
+    handleClose = () => {
         this.setState({
-            file: null,
+            // file: null,
             code: '',
             name: '',
             price: '',
             qty: '',
-            fileName:'',
+            fileName: '',
             open: false
         })
     }
 
     render() {
-        return (   
+        return (
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
                     상품 추가하기
@@ -103,19 +103,19 @@ class StockInAdd extends React.Component {
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>상품 추가</DialogTitle>
                     <DialogContent>
-                    <TextField label="품번" input type="text" name="code" value={this.state.code} onChange={this.handleValueChange}/><br/>
-                    <TextField label="품명" input type="text" name="name" value={this.state.name} onChange={this.handleValueChange}/><br/>
-                    <TextField label="수량" input type="text" name="qty" value={this.state.qty} onChange={this.handleValueChange}/><br/>
-                    <TextField label="입고일" input type="text" name="date_in" value={this.state.date_in} onChange={this.handleValueChange}/><br/>
+                        <TextField label="품번" input type="text" name="code" value={this.state.code} onChange={this.handleValueChange} /><br />
+                        <TextField label="품명" input type="text" name="name" value={this.state.name} onChange={this.handleValueChange} /><br />
+                        <TextField label="수량" input type="text" name="qty" value={this.state.qty} onChange={this.handleValueChange} /><br />
+                        <TextField label="입고일" input type="text" name="date_in" value={this.state.date_in} onChange={this.handleValueChange} /><br />
                     </DialogContent>
                     <DialogActions>
                         <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>
                         <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
-                        </DialogActions>
+                    </DialogActions>
                 </Dialog>
             </div>
-          
-            
+
+
         )
     }
 }
