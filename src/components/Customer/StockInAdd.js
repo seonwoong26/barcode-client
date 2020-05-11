@@ -1,5 +1,5 @@
 import React from 'react';
-import { post } from 'axios';
+import {post} from 'axios';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -14,17 +14,15 @@ const styles = theme => ({
     }
 });
 
-class CustomerAdd extends React.Component {
+class StockInAdd extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            file: null,
+        this.state= {
             code: '',
             name: '',
-            price: '',
             qty: '',
-            fileName: '',
+            fileName:'',
             open: false
 
         }
@@ -32,46 +30,43 @@ class CustomerAdd extends React.Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault()
-        this.addCustomer()
+        this.addStockIn()
             .then((response) => {
                 console.log(response.data);
                 this.props.stateRefresh();
             })
         this.setState({
-            file: null,
-            name: '',
-            code: '',
-            price: '',
-            qty: '',
-            fileName: '',
-            open: false
-        })
-
+                code: '',
+                name: '',
+                qty: '',
+                fileName:'',
+                open: false
+            })
+        
     }
 
 
-    handleFileChange = (e) => {
+    handleFileChange = (e) =>{
         this.setState({
             file: e.target.files[0],
             fileName: e.target.value
         })
     }
 
-    handleValueChange = (e) => {
+    handleValueChange = (e) =>{
         let nextState = {};
         nextState[e.target.name] = e.target.value;
         this.setState(nextState);
     }
 
-    addCustomer = () => {
+    addStockIn = () => {
         // const url = 'http://localhost:5000/api/customers';
-        const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/customers';
+        const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_in';
         const formData = new FormData();
-        formData.append('image', this.state.file);
         formData.append('code', this.state.code);
         formData.append('name', this.state.name);
-        formData.append('price', this.state.price);
-        formData.append('count', this.state.qty);
+        formData.append('qty', this.state.qty);
+        formData.append('date_in', this.state.date_in); 
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -87,21 +82,20 @@ class CustomerAdd extends React.Component {
         });
     }
 
-    handleClose = () => {
+    handleClose= () => {
         this.setState({
             file: null,
             code: '',
             name: '',
             price: '',
             qty: '',
-            fileName: '',
+            fileName:'',
             open: false
         })
     }
 
     render() {
-        const { classes } = this.props;
-        return (
+        return (   
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>
                     상품 추가하기
@@ -109,28 +103,20 @@ class CustomerAdd extends React.Component {
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>상품 추가</DialogTitle>
                     <DialogContent>
-                        <input className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} /><br />
-                        <label htmlFor="raised-button-file">
-                            <Button variant="contained" color="primary" component="span" name="file">
-                                {this.state.fileName === "" ? "이미지 선택" : this.state.fileName}
-
-                            </Button>
-                        </label>
-                        <br />
-                        <TextField label="품번" input type="text" name="code" value={this.state.code} onChange={this.handleValueChange} /><br />
-                        <TextField label="품명" input type="text" name="name" value={this.state.name} onChange={this.handleValueChange} /><br />
-                        <TextField label="가격" input type="text" name="price" value={this.state.price} onChange={this.handleValueChange} /><br />
-                        <TextField label="수량" input type="text" name="qty" value={this.state.qty} onChange={this.handleValueChange} /><br />
+                    <TextField label="품번" input type="text" name="code" value={this.state.code} onChange={this.handleValueChange}/><br/>
+                    <TextField label="품명" input type="text" name="name" value={this.state.name} onChange={this.handleValueChange}/><br/>
+                    <TextField label="수량" input type="text" name="qty" value={this.state.qty} onChange={this.handleValueChange}/><br/>
+                    <TextField label="입고일" input type="text" name="date_in" value={this.state.date_in} onChange={this.handleValueChange}/><br/>
                     </DialogContent>
                     <DialogActions>
                         <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>
                         <Button variant="outlined" color="primary" onClick={this.handleClose}>닫기</Button>
-                    </DialogActions>
+                        </DialogActions>
                 </Dialog>
             </div>
-
-
+          
+            
         )
     }
 }
-export default withStyles(styles)(CustomerAdd);
+export default withStyles(styles)(StockInAdd);

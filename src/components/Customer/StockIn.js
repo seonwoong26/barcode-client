@@ -1,9 +1,9 @@
 import React from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import CustomerDelete from './CustomerDelete';
+import StockInDelete from './CustomerDelete';
 
-class Stock_1 extends React.Component {
+class StockIn extends React.Component {
     render() {
         return(
         <TableRow>
@@ -11,16 +11,14 @@ class Stock_1 extends React.Component {
             {/* <TableCell><img src={this.props.image} alt="profile"/></TableCell> */}
             <TableCell>{this.props.code}</TableCell>
             <TableCell>{this.props.name}</TableCell>
-            <TableCell>{this.props.price}</TableCell>
-            <TableCell>{this.props.count}</TableCell>
-            <TableCell>{this.props.unit}</TableCell>
+            <TableCell>{this.props.qty}</TableCell>
             <TableCell>{this.props.date_in}</TableCell>
-            <TableCell>{this.props.code_in}</TableCell>
 
-            <TableCell><CustomerDelete stateRefresh={this.props.stateRefresh} id={this.props.id}/></TableCell>
+
+            <TableCell><StockInDelete stateRefresh={this.props.stateRefresh} id={this.props.id}/></TableCell>
         </TableRow>
         )
     }
 }
 
-export default Stock_1;
+export default StockIn;

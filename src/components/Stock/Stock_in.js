@@ -1,7 +1,7 @@
 import React, {Component } from 'react';
 import './Stock.css';
-import Stock_1 from '../Customer/Stock_1';
-import CustomerAdd from '../Customer/CustomerAdd';
+import StockIn from '../Customer/StockIn';
+import StockInAdd from '../Customer/StockInAdd';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -18,7 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
+import {getApiStockIn} from '../../apis'
   
 
 const styles = theme => ({
@@ -106,7 +106,7 @@ class Stock_in extends Component {
   constructor(props){
     super(props);
     this.state = {
-    customers: "",
+    stock_in: "",
     completed: 0,
     searchKeyword: ''
   }
@@ -120,13 +120,13 @@ handleClickOpen = () => {
 
   stateRefresh = () => {
     this.setState({
-      customers: '',
+      stock_in: '',
       completed: 0,
       searchKeyword: ''
     });
 
     this.callApi()
-    .then(res => this.setState({customers: res}))
+    .then(res => this.setState({stock_in: res}))
     .catch(err => console.log(err));
   }
 
@@ -134,16 +134,19 @@ handleClickOpen = () => {
     console.log('Component did mount')
     this.timer = setInterval(this.progress, 20 );
     this.callApi()
-    .then(res => this.setState({customers: res}))
+    .then(res => this.setState({stock_in: res}))
     .catch(err => console.log(err));
   }
 
   callApi = async () => {
-    console.log('call api')
-    const response = await fetch('http://localhost:5000/api/stock_in');
-    const body = await response.json();
-    console.log(body)
-    return body;
+    const data = await getApiStockIn();
+    
+    return data
+    // console.log('call api')
+    // const response = await fetch('http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_in');
+    // const body = await response.json();
+    // console.log(body)
+    // return body;
   }
 
   progress = () => {
@@ -166,24 +169,21 @@ handleClickOpen = () => {
       });
 
       return data.map((c) => {
-        return <Stock_1
+        return <StockIn
         stateRefresh={this.stateRefresh}
         key={c.id}
         id={c.id}
         code={c.code}
         name={c.name}
-        price={c.price}
-        count={c.count}
-        unit={c.unit}
+        qty={c.qty}
         date_in={c.date_in}
-        code_in={c.code_in}
         />
       });
     }
 
 
     const { classes } = this.props;
-    const cellList = ["번호", "품번", "품명", "단가", "수량", "단위", "입고일", "공급처코드", "설정"];
+    const cellList = ["번호", "품번", "품명", "수량", "입고일", "설정"];
     return (
       <div className={classes.root}>
        <AppBar position="static">
@@ -218,7 +218,7 @@ handleClickOpen = () => {
         </Toolbar>
       </AppBar>
       <div className={classes.menu}>
-      <CustomerAdd stateRefresh={this.stateRefresh}/>
+      <StockInAdd stateRefresh={this.stateRefresh}/>
       </div>
       <Paper className={classes.paper}>
         <Table className={classes.table}>
@@ -230,7 +230,7 @@ handleClickOpen = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {this.state.customers ? filteredComponents(this.state.customers) : 
+            {this.state.stock_in ? filteredComponents(this.state.stock_in) : 
             <TableRow>
             <TableCell colSpan="6" align="center">
               <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>

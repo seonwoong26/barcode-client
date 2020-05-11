@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-class CustomerDelete extends React.Component {
+class StockInDelete extends React.Component {
 
     constructor(props) {
         super(props);
@@ -27,7 +27,7 @@ class CustomerDelete extends React.Component {
         })
     }
 
-    deleteCustomer(id) {
+    deleteStockIn(id) {
         // const url = `http://localhost:5000/api/delete/${id}`
         const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/delete/' + id;
         fetch(url, {
@@ -62,4 +62,4 @@ class CustomerDelete extends React.Component {
 
 }
 
-export default CustomerDelete;
+export default StockInDelete;

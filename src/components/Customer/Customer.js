@@ -12,7 +12,7 @@ class Customer extends React.Component {
             <TableCell>{this.props.code}</TableCell>
             <TableCell>{this.props.name}</TableCell>
             <TableCell>{this.props.price}</TableCell>
-            <TableCell>{this.props.count}</TableCell>
+            <TableCell>{this.props.qty}</TableCell>
             <TableCell><CustomerDelete stateRefresh={this.props.stateRefresh} id={this.props.id}/></TableCell>
         </TableRow>
         )

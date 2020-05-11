@@ -95,7 +95,7 @@ const styles = theme => ({
 });
 
 
-class Stock extends Component {
+class Home extends Component {
 
 
   constructor(props){
@@ -161,15 +161,12 @@ handleClickOpen = () => {
           <Typography className={classes.title} variant="h6" noWrap>
             출고 관리 시스템에 오신 것을 환영합니다
           </Typography>
-
         </Toolbar>
       </AppBar>
-
-
        </div>
     );
   }
 
 }
 
-export default withStyles(styles)(Stock);
+export default withStyles(styles)(Home);

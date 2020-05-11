@@ -19,6 +19,8 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
+import {getApiCustomers} from '../../apis'
+
   
 
 const styles = theme => ({
@@ -139,11 +141,14 @@ handleClickOpen = () => {
   }
 
   callApi = async () => {
-    console.log('call api')
-    const response = await fetch('http://localhost:5000/api/customers');
-    const body = await response.json();
-    console.log(body)
-    return body;
+    const data = await getApiCustomers();
+    
+    return data
+    // console.log('call api')
+    // const response = await fetch('http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/customers');
+    // const body = await response.json();
+    // console.log(body)
+    // return body;
   }
 
   progress = () => {
@@ -173,14 +178,14 @@ handleClickOpen = () => {
         code={c.code}
         name={c.name}
         price={c.price}
-        count={c.count}
+        qty={c.qty}
         />
       });
     }
 
 
     const { classes } = this.props;
-    const cellList = ["번호", "상품이미지", "품목코드", "품명", "단가", "재고수량", "설정"];
+    const cellList = ["번호", "상품이미지", "품번", "품명", "단가", "수량", "설정"];
     return (
       <div className={classes.root}>
        <AppBar position="static">
