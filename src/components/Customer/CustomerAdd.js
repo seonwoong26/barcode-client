@@ -71,7 +71,7 @@ class CustomerAdd extends React.Component {
         formData.append('code', this.state.code);
         formData.append('name', this.state.name);
         formData.append('price', this.state.price);
-        formData.append('count', this.state.qty);
+        formData.append('qty', this.state.qty);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
