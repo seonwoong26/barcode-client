@@ -87,7 +87,6 @@ class StockInAdd extends React.Component {
             // file: null,
             code: '',
             name: '',
-            price: '',
             qty: '',
             fileName: '',
             open: false
