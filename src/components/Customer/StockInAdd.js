@@ -46,18 +46,18 @@ class StockInAdd extends React.Component {
     }
 
 
-    // handleFileChange = (e) =>{
+    // handleFileChange = (e) => {
     //     this.setState({
     //         file: e.target.files[0],
     //         fileName: e.target.value
     //     })
     // }
 
-    // handleValueChange = (e) =>{
-    //     let nextState = {};
-    //     nextState[e.target.name] = e.target.value;
-    //     this.setState(nextState);
-    // }
+    handleValueChange = (e) => {
+        let nextState = {};
+        nextState[e.target.name] = e.target.value;
+        this.setState(nextState);
+    }
 
     addStockIn = () => {
         // const url = 'http://localhost:5000/api/customers';
@@ -88,7 +88,8 @@ class StockInAdd extends React.Component {
             code: '',
             name: '',
             qty: '',
-            fileName: '',
+            date_in: '',
+            // fileName: '',
             open: false
         })
     }

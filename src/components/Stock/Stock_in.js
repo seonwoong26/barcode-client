@@ -1,4 +1,4 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
 import './Stock.css';
 import StockIn from '../Customer/StockIn';
 import StockInAdd from '../Customer/StockInAdd';
@@ -18,8 +18,8 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-import {getApiStockIn} from '../../apis'
-  
+import { getApiStockIn } from '../../apis'
+
 
 const styles = theme => ({
   root: {
@@ -34,14 +34,14 @@ const styles = theme => ({
     justifyContent: 'center'
   },
   paper: {
-    marginLeft:18,
+    marginLeft: 18,
     marginRight: 18
   },
   progress: {
-   margin: theme.spacing(2) 
+    margin: theme.spacing(2)
   },
   grow: {
-    flexGrow:1,
+    flexGrow: 1,
   },
   tableHead: {
     fontSize: '1.0rem'
@@ -50,7 +50,7 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
- 
+
   title: {
     flexGrow: 1,
     display: 'none',
@@ -103,20 +103,20 @@ const styles = theme => ({
 class Stock_in extends Component {
 
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-    stock_in: "",
-    completed: 0,
-    searchKeyword: ''
+      stock_in: "",
+      completed: 0,
+      searchKeyword: ''
+    }
   }
-}
 
-handleClickOpen = () => {
-  this.setState({
+  handleClickOpen = () => {
+    this.setState({
       open: true
-  });
-}
+    });
+  }
 
   stateRefresh = () => {
     this.setState({
@@ -126,21 +126,21 @@ handleClickOpen = () => {
     });
 
     this.callApi()
-    .then(res => this.setState({stock_in: res}))
-    .catch(err => console.log(err));
+      .then(res => this.setState({ stock_in: res }))
+      .catch(err => console.log(err));
   }
 
   componentDidMount() {
     console.log('Component did mount')
-    this.timer = setInterval(this.progress, 20 );
+    this.timer = setInterval(this.progress, 20);
     this.callApi()
-    .then(res => this.setState({stock_in: res}))
-    .catch(err => console.log(err));
+      .then(res => this.setState({ stock_in: res }))
+      .catch(err => console.log(err));
   }
 
   callApi = async () => {
     const data = await getApiStockIn();
-    
+
     return data
     // console.log('call api')
     // const response = await fetch('http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_in');
@@ -151,7 +151,7 @@ handleClickOpen = () => {
 
   progress = () => {
     const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 1});
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
 
   }
 
@@ -162,7 +162,7 @@ handleClickOpen = () => {
   }
 
   render() {
-    
+
     const filteredComponents = (data) => {
       data = data.filter((c) => {
         return c.name.indexOf(this.state.searchKeyword) > -1;
@@ -170,13 +170,13 @@ handleClickOpen = () => {
 
       return data.map((c) => {
         return <StockIn
-        stateRefresh={this.stateRefresh}
-        key={c.id}
-        id={c.id}
-        code={c.code}
-        name={c.name}
-        qty={c.qty}
-        date_in={c.date_in}
+          stateRefresh={this.stateRefresh}
+          key={c.id}
+          id={c.id}
+          code={c.code}
+          name={c.name}
+          qty={c.qty}
+          date_in={c.date_in}
         />
       });
     }
@@ -186,61 +186,61 @@ handleClickOpen = () => {
     const cellList = ["번호", "품번", "품명", "수량", "입고일", "설정"];
     return (
       <div className={classes.root}>
-       <AppBar position="static">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            입고현황
+        <AppBar position="static">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="open drawer"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Typography className={classes.title} variant="h6" noWrap>
+              입고현황
           </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                placeholder="검색하기"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+                name="serchKeyword"
+                value={this.state.serchKeyword}
+                onChange={this.handleValueChange}
+              />
             </div>
-            <InputBase
-              placeholder="검색하기"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-              name="serchKeyword"
-              value={this.state.serchKeyword}
-              onChange={this.handleValueChange}
-            />
-          </div>
-        </Toolbar>
-      </AppBar>
-      <div className={classes.menu}>
-      <StockInAdd stateRefresh={this.stateRefresh}/>
+          </Toolbar>
+        </AppBar>
+        <div className={classes.menu}>
+          <StockInAdd stateRefresh={this.stateRefresh} />
+        </div>
+        <Paper className={classes.paper}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                {cellList.map((c, idx) => {
+                  return <TableCell className={classes.tableHead} key={idx}>{c}</TableCell>
+                })}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.state.stock_in ? filteredComponents(this.state.stock_in) :
+                <TableRow>
+                  <TableCell colSpan="6" align="center">
+                    <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed} />
+                  </TableCell>
+                </TableRow>
+              }
+            </TableBody>
+          </Table>
+        </Paper>
       </div>
-      <Paper className={classes.paper}>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              {cellList.map((c, idx) => {
-                return <TableCell className={classes.tableHead} key={idx}>{c}</TableCell>
-              })}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.state.stock_in ? filteredComponents(this.state.stock_in) : 
-            <TableRow>
-            <TableCell colSpan="6" align="center">
-              <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed}/>
-            </TableCell>
-          </TableRow>
-            }
-          </TableBody>
-        </Table>
-       </Paper>
-       </div>
     );
   }
 
