@@ -60,7 +60,6 @@ class StockInAdd extends React.Component {
     }
 
     addStockIn = () => {
-        // const url = 'http://localhost:5000/api/customers';
         const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_in';
         const formData = new FormData();
         formData.append('code', this.state.code);
