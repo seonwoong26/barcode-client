@@ -235,7 +235,7 @@ class Stock extends Component {
               {this.state.customers ? filteredComponents(this.state.customers) :
 
                 <TableRow>
-                  <TableCell colSpan="6" align="center">
+                  <TableCell colSpan="7" align="center">
                     <CircularProgress className={classes.progress} variant="determinate" value={this.state.completed} />
                   </TableCell>
                 </TableRow>
