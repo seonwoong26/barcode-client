@@ -42,7 +42,6 @@ class StockInAdd extends React.Component {
             date_in: '',
             open: false
         })
-
     }
 
 
