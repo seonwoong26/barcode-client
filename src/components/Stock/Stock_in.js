@@ -127,6 +127,7 @@ class Stock_in extends Component {
     this.callApi()
       .then(res => this.setState({ stock_in: res }))
       .catch(err => console.log(err));
+
   }
 
   componentDidMount() {
@@ -139,8 +140,9 @@ class Stock_in extends Component {
 
   callApi = async () => {
     const data = await getApiStockIn();
-
     return data
+
+
     // console.log('call api')
     // const response = await fetch('http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_in');
     // const body = await response.json();
