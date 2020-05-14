@@ -124,7 +124,6 @@ class Stock_in extends Component {
       completed: 0,
       searchKeyword: ''
     });
-
     this.callApi()
       .then(res => this.setState({ stock_in: res }))
       .catch(err => console.log(err));
@@ -210,8 +209,8 @@ class Stock_in extends Component {
                   input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
-                name="serchKeyword"
-                value={this.state.serchKeyword}
+                name="searchKeyword"
+                value={this.state.searchKeyword}
                 onChange={this.handleValueChange}
               />
             </div>
