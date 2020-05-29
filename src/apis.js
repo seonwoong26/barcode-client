@@ -13,8 +13,8 @@ if (isProduction) {
 
 
 
-const getApiCustomers = async () => {
-    const response = await fetch(`${baseUrl}/api/customers`);
+const getApiItem = async () => {
+    const response = await fetch(`${baseUrl}/api/item`);
     const body = await response.json();
     console.log(body)
     return body;
@@ -27,4 +27,4 @@ const getApiStockIn = async () => {
     return body;
 }
 
-export { getApiCustomers, getApiStockIn }
+export { getApiItem, getApiStockIn }

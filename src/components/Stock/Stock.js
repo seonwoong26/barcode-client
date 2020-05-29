@@ -19,7 +19,7 @@ import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { getApiCustomers } from '../../apis'
+import { getApiItem } from '../../apis'
 
 
 
@@ -108,7 +108,7 @@ class Stock extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      customers: "",
+      item: "",
       completed: 0,
       searchKeyword: ''
     }
@@ -122,13 +122,13 @@ class Stock extends Component {
 
   stateRefresh = () => {
     this.setState({
-      customers: '',
+      item: '',
       completed: 0,
       searchKeyword: ''
     });
 
     this.callApi()
-      .then(res => this.setState({ customers: res }))
+      .then(res => this.setState({ item: res }))
       .catch(err => console.log(err));
   }
 
@@ -136,12 +136,12 @@ class Stock extends Component {
     console.log('Component did mount')
     this.timer = setInterval(this.progress, 20);
     this.callApi()
-      .then(res => this.setState({ customers: res }))
+      .then(res => this.setState({ Item: res }))
       .catch(err => console.log(err));
   }
 
   callApi = async () => {
-    const data = await getApiCustomers();
+    const data = await getApiItem();
 
     return data
     // console.log('call api')
@@ -185,7 +185,7 @@ class Stock extends Component {
 
 
     const { classes } = this.props;
-    const cellList = ["번호", "상품이미지", "품번", "품명", "가격", "수량", "설정"];
+    const cellList = ["번호", "상품이미지", "품번", "품명", "수량", "설정"];
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -232,7 +232,7 @@ class Stock extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.customers ? filteredComponents(this.state.customers) :
+              {this.state.item ? filteredComponents(this.state.item) :
 
                 <TableRow>
                   <TableCell colSpan="7" align="center">
