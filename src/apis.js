@@ -27,4 +27,11 @@ const getApiStockIn = async () => {
     return body;
 }
 
-export { getApiItem, getApiStockIn }
+const getApiStockOut = async () => {
+    const response = await fetch(`${baseUrl}/api/stock_out`);
+    const body = await response.json();
+    console.log(body)
+    return body;
+}
+
+export { getApiItem, getApiStockIn, getApiStockOut }
