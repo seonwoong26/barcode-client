@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Stock.css';
-import StockIn from '../Customer/StockIn';
-import StockInAdd from '../Customer/StockInAdd';
+import StockOut from '../Customer/StockOut';
+import StockOutAdd from '../Customer/StockOutAdd';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -167,18 +167,18 @@ class Stock_out extends Component {
 
     const filteredComponents = (data) => {
       data = data.filter((c) => {
-        return c.name.indexOf(this.state.searchKeyword) > -1;
+        return c.id.indexOf(this.state.searchKeyword) > -1;
       });
 
       return data.map((c) => {
-        return <StockIn
+        return <StockOut
           stateRefresh={this.stateRefresh}
           key={c.id}
           id={c.id}
           code={c.code}
           name={c.name}
           qty={c.qty}
-          date_out={c.date_in}
+          date_out={c.date_out}
         />
       });
     }
@@ -220,7 +220,7 @@ class Stock_out extends Component {
           </Toolbar>
         </AppBar>
         <div className={classes.menu}>
-          <StockInAdd stateRefresh={this.stateRefresh} />
+          <StockOutAdd stateRefresh={this.stateRefresh} />
         </div>
         <Paper className={classes.paper}>
           <Table className={classes.table}>

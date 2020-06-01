@@ -52,7 +52,7 @@ class StockInDelete extends React.Component {
                     </Typography>
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="contained" color="primary" onClick={(e) => { this.deleteCustomer(this.props.id) }}>삭제</Button>
+                        <Button variant="contained" color="primary" onClick={(e) => { this.deleteStockIn(this.props.id) }}>삭제</Button>
                         <Button variant="contained" color="primary" onClick={this.handleClose}>닫기</Button>
                     </DialogActions>
                 </Dialog>

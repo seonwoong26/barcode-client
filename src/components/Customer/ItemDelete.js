@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
-class CustomerDelete extends React.Component {
+class ItemDelete extends React.Component {
 
     constructor(props) {
         super(props);
@@ -21,18 +21,18 @@ class CustomerDelete extends React.Component {
         });
     }
 
-    handleClose= () => {
+    handleClose = () => {
         this.setState({
-           open: false
+            open: false
         })
     }
 
-    deleteCustomer(id) {
+    deleteItem(id) {
         // const url = `http://localhost:5000/api/delete/${id}`
         const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/delete/' + id;
         fetch(url, {
             method: 'POST'
-            
+
         });
         this.props.stateRefresh();
 
@@ -41,25 +41,25 @@ class CustomerDelete extends React.Component {
     render() {
         return (
             <div>
-            <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>삭제</Button>
-            <Dialog open={this.state.open} onClose={this.handleClose}>
-                <DialogTitle onClose={this.handleClose}>
-                   삭제 경고
+                <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>삭제</Button>
+                <Dialog open={this.state.open} onClose={this.handleClose}>
+                    <DialogTitle onClose={this.handleClose}>
+                        삭제 경고
                 </DialogTitle>
-                <DialogContent>
-                    <Typography gutterBottom>
-                        선택한 고객 정보가 삭제됩니다.
+                    <DialogContent>
+                        <Typography gutterBottom>
+                            선택한 고객 정보가 삭제됩니다.
                     </Typography>
-                </DialogContent>
-                <DialogActions>
-                    <Button variant="contained" color="primary" onClick={(e) => {this.deleteCustomer(this.props.id)}}>삭제</Button>
-                    <Button variant="contained" color="primary" onClick={this.handleClose}>닫기</Button>
-                </DialogActions>
-            </Dialog>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button variant="contained" color="primary" onClick={(e) => { this.deleteItem(this.props.id) }}>삭제</Button>
+                        <Button variant="contained" color="primary" onClick={this.handleClose}>닫기</Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         )
     }
 
 }
 
-export default CustomerDelete;
+export default ItemDelete;

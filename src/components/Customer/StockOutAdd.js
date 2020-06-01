@@ -30,7 +30,7 @@ class StockOutAdd extends React.Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault()
-        this.addStockIn()
+        this.addStockOut()
             .then((response) => {
                 console.log(response.data);
                 this.props.stateRefresh();
@@ -58,13 +58,13 @@ class StockOutAdd extends React.Component {
         this.setState(nextState);
     }
 
-    addStockIn = () => {
-        const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_in';
+    addStockOut = () => {
+        const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_out';
         const formData = new FormData();
         formData.append('code', this.state.code);
         formData.append('name', this.state.name);
         formData.append('qty', this.state.qty);
-        formData.append('date_in', this.state.date_out);
+        formData.append('date_out', this.state.date_out);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'

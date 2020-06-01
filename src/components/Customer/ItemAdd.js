@@ -14,7 +14,7 @@ const styles = theme => ({
     }
 });
 
-class CustomerAdd extends React.Component {
+class ItemAdd extends React.Component {
 
     constructor(props) {
         super(props);
@@ -32,7 +32,7 @@ class CustomerAdd extends React.Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault()
-        this.addCustomer()
+        this.addItem()
             .then((response) => {
                 console.log(response.data);
                 this.props.stateRefresh();
@@ -62,7 +62,7 @@ class CustomerAdd extends React.Component {
         this.setState(nextState);
     }
 
-    addCustomer = () => {
+    addItem = () => {
         // const url = 'http://localhost:5000/api/customers';
         const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/item';
         const formData = new FormData();
@@ -132,4 +132,4 @@ class CustomerAdd extends React.Component {
         )
     }
 }
-export default withStyles(styles)(CustomerAdd);
+export default withStyles(styles)(ItemAdd);

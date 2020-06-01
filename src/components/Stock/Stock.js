@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Stock.css';
-import Customer from '../Customer/Customer';
-import CustomerAdd from '../Customer/CustomerAdd';
+import Item from '../Customer/Item';
+import ItemAdd from '../Customer/ItemAdd';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
@@ -136,7 +136,7 @@ class Stock extends Component {
     console.log('Component did mount')
     this.timer = setInterval(this.progress, 20);
     // this.callApi()
-    //   .then(res => this.setState({ tem: res }))
+    //   .then(res => this.setState({ item: res }))
     //   .catch(err => console.log(err));
     this.stateRefresh()
   }
@@ -171,7 +171,7 @@ class Stock extends Component {
         return c.name.indexOf(this.state.searchKeyword) > -1;
       });
       return data.map((c) => {
-        return <Customer
+        return <Item
           stateRefresh={this.stateRefresh}
           key={c.id}
           id={c.id}
@@ -180,13 +180,14 @@ class Stock extends Component {
           name={c.name}
           price={c.price}
           qty={c.qty}
+          date={c.date}
         />
       });
     }
 
 
     const { classes } = this.props;
-    const cellList = ["번호", "상품이미지", "품번", "품명", "수량", "설정"];
+    const cellList = ["번호", "상품이미지", "품번", "품명", "가격", "수량", "날짜", "설정"];
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -221,7 +222,7 @@ class Stock extends Component {
           </Toolbar>
         </AppBar>
         <div className={classes.menu}>
-          <CustomerAdd stateRefresh={this.stateRefresh} />
+          <ItemAdd stateRefresh={this.stateRefresh} />
         </div>
         <Paper className={classes.paper}>
           <Table className={classes.table}>

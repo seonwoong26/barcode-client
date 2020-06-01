@@ -27,7 +27,7 @@ class StockOutDelete extends React.Component {
         })
     }
 
-    deleteStockIn(id) {
+    deleteStockOut(id) {
         // const url = `http://localhost:5000/api/delete/${id}`
         const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/delete/' + id;
         fetch(url, {
@@ -52,7 +52,7 @@ class StockOutDelete extends React.Component {
                     </Typography>
                     </DialogContent>
                     <DialogActions>
-                        <Button variant="contained" color="primary" onClick={(e) => { this.deleteCustomer(this.props.id) }}>삭제</Button>
+                        <Button variant="contained" color="primary" onClick={(e) => { this.deleteStockOut(this.props.id) }}>삭제</Button>
                         <Button variant="contained" color="primary" onClick={this.handleClose}>닫기</Button>
                     </DialogActions>
                 </Dialog>
