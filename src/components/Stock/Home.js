@@ -1,4 +1,4 @@
-import React, {Component } from 'react';
+import React, { Component } from 'react';
 import './Stock.css';
 import { withStyles } from '@material-ui/core/styles';
 // import CircularProgress from '@material-ui/core/circularProgress';
@@ -9,16 +9,16 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import Typography from '@material-ui/core/Typography';
 
 
-  
+
 
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop : theme.spacing.unit *3,
+    marginTop: theme.spacing.unit * 3,
     overflowX: "auto"
   },
 
-    table: {
+  table: {
     minWidth: 1080
 
   },
@@ -29,14 +29,14 @@ const styles = theme => ({
     justifyContent: 'center'
   },
   paper: {
-    marginLeft:18,
+    marginLeft: 18,
     marginRight: 18
   },
   progress: {
-   margin: theme.spacing.unit * 2 
+    margin: theme.spacing.unit * 2
   },
   grow: {
-    flexGrow:1,
+    flexGrow: 1,
   },
   tableHead: {
     fontSize: '1.0rem'
@@ -45,7 +45,7 @@ const styles = theme => ({
     marginLeft: -12,
     marginRight: 20,
   },
- 
+
   title: {
     flexGrow: 1,
     display: 'none',
@@ -98,20 +98,20 @@ const styles = theme => ({
 class Home extends Component {
 
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
-    customers: "",
-    completed: 0,
-    searchKeyword: ''
+      customers: "",
+      completed: 0,
+      searchKeyword: ''
+    }
   }
-}
 
-handleClickOpen = () => {
-  this.setState({
-      open: true
-  });
-}
+  // handleClickOpen = () => {
+  //   this.setState({
+  //     open: true
+  //   });
+  // }
 
   stateRefresh = () => {
     this.setState({
@@ -121,49 +121,49 @@ handleClickOpen = () => {
     });
 
     this.callApi()
-    .then(res => this.setState({customers: res}))
-    .catch(err => console.log(err));
+      .then(res => this.setState({ customers: res }))
+      .catch(err => console.log(err));
   }
 
-  componentDidMount() {
-    // this.timer = setInterval(this.progress, 20 );
-    // this.callApi()
-    // .then(res => this.setState({customers: res}))
-    // .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+  // this.timer = setInterval(this.progress, 20 );
+  // this.callApi()
+  // .then(res => this.setState({customers: res}))
+  // .catch(err => console.log(err));
+  // }
 
-  callApi = async () => {
-    const response = await fetch('/api/customers');
-    const body = await response.json();
-    return body;
-  }
+  // callApi = async () => {
+  //   const response = await fetch('/api/customers');
+  //   const body = await response.json();
+  //   return body;
+  // }
 
-  progress = () => {
-    const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 1});
+  // progress = () => {
+  //   const { completed } = this.state;
+  //   this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
 
-  }
+  // }
 
-  handleValueChange = (e) => {
-    let nextState = {};
-    nextState[e.target.name] = e.target.value;
-    this.setState(nextState);
-  }
+  // handleValueChange = (e) => {
+  //   let nextState = {};
+  //   nextState[e.target.name] = e.target.value;
+  //   this.setState(nextState);
+  // }
 
   render() {
-    
+
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
-       <AppBar position="static">
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            출고 관리 시스템에 오신 것을 환영합니다
+        <AppBar position="static">
+          <Toolbar>
+            <Typography className={classes.title} variant="h6" noWrap>
+              출고 관리 시스템에 오신 것을 환영합니다
           </Typography>
-        </Toolbar>
-      </AppBar>
-       </div>
+          </Toolbar>
+        </AppBar>
+      </div>
     );
   }
 

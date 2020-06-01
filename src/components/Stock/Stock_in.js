@@ -125,7 +125,7 @@ class Stock_in extends Component {
       searchKeyword: ''
     });
     this.callApi()
-      .then(res => this.setState({ stock_in: res }))
+      .then(res => this.setState({ stock_in: res.result }))
       .catch(err => console.log(err));
 
   }
@@ -133,9 +133,10 @@ class Stock_in extends Component {
   componentDidMount() {
     console.log('Component did mount')
     this.timer = setInterval(this.progress, 20);
-    this.callApi()
-      .then(res => this.setState({ stock_in: res }))
-      .catch(err => console.log(err));
+    // this.callApi()
+    //   .then(res => this.setState({ stock_in: res }))
+    //   .catch(err => console.log(err));
+    this.stateRefresh()
   }
 
   callApi = async () => {

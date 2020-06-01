@@ -128,16 +128,17 @@ class Stock extends Component {
     });
 
     this.callApi()
-      .then(res => this.setState({ item: res }))
+      .then(res => this.setState({ item: res.result }))
       .catch(err => console.log(err));
   }
 
   componentDidMount() {
     console.log('Component did mount')
     this.timer = setInterval(this.progress, 20);
-    this.callApi()
-      .then(res => this.setState({ Item: res }))
-      .catch(err => console.log(err));
+    // this.callApi()
+    //   .then(res => this.setState({ tem: res }))
+    //   .catch(err => console.log(err));
+    this.stateRefresh()
   }
 
   callApi = async () => {
