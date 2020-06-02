@@ -1,7 +1,7 @@
 import React from 'react';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
-import StockInDelete from './ItemDelete';
+import StockInDelete from './StockInDelete';
 
 class StockIn extends React.Component {
     render() {

@@ -59,7 +59,8 @@ class StockOutAdd extends React.Component {
     }
 
     addStockOut = () => {
-        const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_out';
+        // const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_out';
+        const url = 'http://localhost:5000/stock_out';
         const formData = new FormData();
         formData.append('code', this.state.code);
         formData.append('name', this.state.name);

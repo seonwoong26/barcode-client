@@ -167,7 +167,7 @@ class Stock_out extends Component {
 
     const filteredComponents = (data) => {
       data = data.filter((c) => {
-        return c.id.indexOf(this.state.searchKeyword) > -1;
+        return c.name.indexOf(this.state.searchKeyword) > -1;
       });
 
       return data.map((c) => {
