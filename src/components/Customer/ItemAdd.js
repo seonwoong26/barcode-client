@@ -63,8 +63,8 @@ class ItemAdd extends React.Component {
     }
 
     addItem = () => {
-        const url = 'http://localhost:5000/api/item_client';
-        // const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/item';
+        // const url = 'http://localhost:5000/api/item_client';
+        const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/item_client';
         const formData = new FormData();
         formData.append('image', this.state.file);
         formData.append('code', this.state.code);

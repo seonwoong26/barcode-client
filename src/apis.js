@@ -6,10 +6,11 @@ const isProduction = true
 // node .env
 
 let baseUrl = 'http://localhost:5000'
+// let baseUrl = 'http://http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000'
 
 if (isProduction) {
-    // baseUrl = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000'
-    baseUrl = 'http://localhost:5000'
+    baseUrl = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000'
+    // baseUrl = 'http://localhost:5000'
 }
 
 

@@ -28,8 +28,8 @@ class ItemDelete extends React.Component {
     }
 
     deleteItem(id) {
-        // const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/delete/' + id;
-        const url = 'http://localhost:5000/api/delete/' + id;
+        const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/delete/' + id;
+        // const url = 'http://localhost:5000/api/delete/' + id;
         fetch(url, {
             method: 'POST',
             headers: {

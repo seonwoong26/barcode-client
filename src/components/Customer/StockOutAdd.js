@@ -20,9 +20,9 @@ class StockOutAdd extends React.Component {
         super(props);
         this.state = {
             code: '',
-            name: '',
+            // name: '',
             qty: '',
-            date_out: '',
+            // date_out: '',
             open: false
 
         }
@@ -37,9 +37,9 @@ class StockOutAdd extends React.Component {
             })
         this.setState({
             code: '',
-            name: '',
+            // name: '',
             qty: '',
-            date_out: '',
+            // date_out: '',
             open: false
         })
     }
@@ -59,13 +59,13 @@ class StockOutAdd extends React.Component {
     }
 
     addStockOut = () => {
-        // const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_out';
-        const url = 'http://localhost:5000/stock_out';
+        const url = 'http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/stock_outclient';
+        // const url = 'http://localhost:5000/api/stock_outclient';
         const formData = new FormData();
         formData.append('code', this.state.code);
-        formData.append('name', this.state.name);
+        // formData.append('name', this.state.name);
         formData.append('qty', this.state.qty);
-        formData.append('date_out', this.state.date_out);
+        // formData.append('date_out', this.state.date_out);
         const config = {
             headers: {
                 'content-type': 'multipart/form-data'
@@ -84,9 +84,9 @@ class StockOutAdd extends React.Component {
     handleClose = () => {
         this.setState({
             code: '',
-            name: '',
+            // name: '',
             qty: '',
-            date_out: '',
+            // date_out: '',
             open: false
         })
     }
@@ -101,9 +101,9 @@ class StockOutAdd extends React.Component {
                     <DialogTitle>상품 추가</DialogTitle>
                     <DialogContent>
                         <TextField label="품번" input type="text" name="code" value={this.state.code} onChange={this.handleValueChange} /><br />
-                        <TextField label="품명" input type="text" name="name" value={this.state.name} onChange={this.handleValueChange} /><br />
+                        {/* <TextField label="품명" input type="text" name="name" value={this.state.name} onChange={this.handleValueChange} /><br /> */}
                         <TextField label="수량" input type="text" name="qty" value={this.state.qty} onChange={this.handleValueChange} /><br />
-                        <TextField label="출고일" input type="text" name="date_out" value={this.state.date_out} onChange={this.handleValueChange} /><br />
+                        {/* <TextField label="출고일" input type="text" name="date_out" value={this.state.date_out} onChange={this.handleValueChange} /><br /> */}
                     </DialogContent>
                     <DialogActions>
                         <Button variant="contained" color="primary" onClick={this.handleFormSubmit}>추가</Button>

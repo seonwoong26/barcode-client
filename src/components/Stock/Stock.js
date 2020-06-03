@@ -187,7 +187,7 @@ class Stock extends Component {
 
 
     const { classes } = this.props;
-    const cellList = ["번호", "상품이미지", "품번", "품명", "가격", "수량", "날짜", "설정"];
+    const cellList = ["번호", "품번", "품명", "가격", "수량", "날짜", "설정"];
     return (
       <div className={classes.root}>
         <AppBar position="static">
