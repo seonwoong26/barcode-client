@@ -38,6 +38,7 @@ class StockOutDelete extends React.Component {
             }
 
         });
+
         this.props.stateRefresh();
 
     }

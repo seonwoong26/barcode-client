@@ -38,6 +38,7 @@ class StockInDelete extends React.Component {
             }
 
         });
+
         this.props.stateRefresh();
 
     }

@@ -4,7 +4,7 @@ import Home from './components/Stock/Home';
 import Stock from './components/Stock/Stock';
 import Stock_in from './components/Stock/Stock_in';
 import Stock_out from './components/Stock/Stock_out';
-import Client from './components/Stock/Client';
+// import Client from './components/Stock/Client';
 // import Add from './components/Stock/Add';
 import Button from '@material-ui/core/Button';
 import './App.css';
@@ -34,9 +34,9 @@ function App() {
               <Link to="/stock_out"><Button variant="contained" color="primary">출고현황</Button></Link>
             </span>
 
-            <span className="link">
+            {/* <span className="link">
               <Link to="/client"><Button variant="contained" color="primary">거래처목록</Button></Link>
-            </span>
+            </span> */}
 
             {/* <span className="link">
               <Link to="/Add"><Button variant="contained" color="primary">추가</Button></Link>
@@ -53,7 +53,7 @@ function App() {
         <Route path='/stock' component={Stock} />
         <Route path='/stock_in' component={Stock_in} />
         <Route path='/stock_out' component={Stock_out} />
-        <Route path='/client' component={Client} />
+        {/* <Route path='/client' component={Client} /> */}
         {/* <Route path='/Add' component={Add}/> */}
       </div>
     </Router>

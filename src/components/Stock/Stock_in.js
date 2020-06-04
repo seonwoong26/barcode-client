@@ -186,6 +186,7 @@ class Stock_in extends Component {
 
     const { classes } = this.props;
     const cellList = ["번호", "품번", "품명", "수량", "입고일", "설정"];
+
     return (
       <div className={classes.root}>
         <AppBar position="static">
