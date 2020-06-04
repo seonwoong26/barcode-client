@@ -111,8 +111,6 @@ class StockOutAdd extends React.Component {
                     </DialogActions>
                 </Dialog>
             </div>
-
-
         )
     }
 }

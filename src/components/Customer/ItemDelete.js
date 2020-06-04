@@ -63,7 +63,6 @@ class ItemDelete extends React.Component {
             </div>
         )
     }
-
 }
 
 export default ItemDelete;

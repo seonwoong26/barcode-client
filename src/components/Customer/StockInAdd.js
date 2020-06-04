@@ -111,8 +111,6 @@ class StockInAdd extends React.Component {
                     </DialogActions>
                 </Dialog>
             </div>
-
-
         )
     }
 }

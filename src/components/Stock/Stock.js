@@ -18,7 +18,6 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
-
 import { getApiItem } from '../../apis'
 
 
@@ -104,7 +103,6 @@ const styles = theme => ({
 
 class Stock extends Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -146,7 +144,7 @@ class Stock extends Component {
 
     return data
     // console.log('call api')
-    // const response = await fetch('http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/customers');
+    // const response = await fetch('http://ec2-3-20-232-219.us-east-2.compute.amazonaws.com:5000/api/item');
     // const body = await response.json();
     // console.log(body)
     // return body;
@@ -186,8 +184,8 @@ class Stock extends Component {
     }
 
 
-    const { classes } = this.props;
-    const cellList = ["번호", "품번", "품명", "가격", "수량", "날짜", "설정"];
+  const { classes } = this.props;
+  const cellList = ["번호", "품번", "품명", "가격", "수량", "날짜", "설정"];
     return (
       <div className={classes.root}>
         <AppBar position="static">

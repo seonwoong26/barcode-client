@@ -14,7 +14,6 @@ if (isProduction) {
 }
 
 
-
 const getApiItem = async () => {
     const response = await fetch(`${baseUrl}/api/item`);
     const body = await response.json();

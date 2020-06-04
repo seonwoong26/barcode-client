@@ -127,8 +127,6 @@ class ItemAdd extends React.Component {
                     </DialogActions>
                 </Dialog>
             </div>
-
-
         )
     }
 }

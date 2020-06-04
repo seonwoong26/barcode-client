@@ -46,7 +46,6 @@ function App() {
           {/* <li>
                 <Link to="/user">User</Link>
               </li> */}
-
         </nav>
 
         <Route exact path='/home' component={Home} />
@@ -57,8 +56,6 @@ function App() {
         {/* <Route path='/Add' component={Add}/> */}
       </div>
     </Router>
-
-
   );
 }
 

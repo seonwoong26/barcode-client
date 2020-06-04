@@ -102,7 +102,6 @@ const styles = theme => ({
 
 class Stock_out extends Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -245,7 +244,6 @@ class Stock_out extends Component {
       </div>
     );
   }
-
 }
 
 export default withStyles(styles)(Stock_out);

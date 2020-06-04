@@ -38,9 +38,7 @@ class StockInDelete extends React.Component {
             }
 
         });
-
         this.props.stateRefresh();
-
     }
 
     render() {
@@ -64,7 +62,6 @@ class StockInDelete extends React.Component {
             </div>
         )
     }
-
 }
 
 export default StockInDelete;

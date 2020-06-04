@@ -246,7 +246,6 @@ class Stock_in extends Component {
       </div>
     );
   }
-
 }
 
 export default withStyles(styles)(Stock_in);
